@@ -1,0 +1,7 @@
+venv
+.gitignore
+k8s
+README.md
+ditaleng
+env
+.env.example

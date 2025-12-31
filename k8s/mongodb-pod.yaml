@@ -4,3 +4,14 @@ Metadata:
   name: 
   labels:
     app: mongodb
+spec:
+  containers:
+    - name: mongodb
+      image: mongo:7.1
+      ports:
+        - containerPort: 27017
+
+      env:
+        - name: MONGO_INITDB_DATABASE 
+          value: contactsdb
+       

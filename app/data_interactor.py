@@ -3,6 +3,15 @@ from pymongo.errors import ConnectionFailure
 from typing import List, Dict, Optional
 from typing import Optional
 from bson import ObjectId
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
+host=os.getenv("DB_HOST"),
+mongo_port=os.getenv("MONGO_PORT"),
+mongo_db =os.getenv("MONGO_DB"),
 
 
 # MongoDB Client Setup
@@ -14,7 +23,7 @@ def get_database():
     try:
         # Connection string - modify if your MongoDB is hosted elsewhere
         client = MongoClient(
-            "mongodb://localhost:27017/", serverSelectionTimeoutMS=5000
+            f"mongodb://{host}:{mongo_port}/", serverSelectionTimeoutMS=5000
         )
 
         # Test the connection
@@ -22,7 +31,7 @@ def get_database():
         print("✓ Successfully connected to MongoDB!")
 
         # Return the database
-        db = client["contacts_db"]
+        db = client[mongo_db]
         return db
 
     except ConnectionFailure as e:
