@@ -9,9 +9,10 @@ import os
 
 load_dotenv()
 
-host=os.getenv("DB_HOST"),
-mongo_port=os.getenv("MONGO_PORT"),
-mongo_db =os.getenv("MONGO_DB"),
+
+host = os.getenv("MONGO_HOST")
+mongo_port = os.getenv("MONGO_PORT")
+mongo_db = os.getenv("MONGO_DB")
 
 
 # MongoDB Client Setup
@@ -40,9 +41,6 @@ def get_database():
         return None
 
 
-
-
-
 class Datainteractor:
 
     @staticmethod
@@ -62,7 +60,7 @@ class Datainteractor:
         contacts_db = db["contacts"] if db is not None else None
         if contacts_db is None:
             return []
-        
+
         contacts = []
         for contact in contacts_db.find():
             contact["_id"] = str(contact["_id"])
